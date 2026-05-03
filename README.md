@@ -55,13 +55,13 @@ eˣ, e⁻ˣ, sin(x), cos(x) built from first principles with convergence to `err
 ## Projects
 
 **[VisionSystemAI — Industrial Process Flow](https://github.com/petem903/VisionSystemAIforIndustrialProcessFlow)**
-OpenCV-based machine vision system for automated restock tracking in an industrial production environment.
+OpenCV-based machine vision system for automated restock tracking in an industrial production environment. (Private)
 
 **[Autonomous Line Following Robot](https://github.com/petem903/Line-Following-Robot)**
 PID-controlled robot navigating a line course autonomously. Senior design capstone — full hardware/firmware build.
 
 **[Industrial Automation Portfolio](https://github.com/petem903/Portfolio)**
-Controls and automation work from co-op and employment at Yanfeng Automotive Interiors.
+Controls and automation work from co-op and employment at Yanfeng Automotive Interiors. (Private)
 
 ---
 
