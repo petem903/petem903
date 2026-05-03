@@ -1,98 +1,79 @@
 # Pete Mathew
 
-**Electrical Engineering student** with hands-on experience in embedded systems, C++, and scientific computing. I work across the full hardware-software stack — from writing firmware for microcontrollers to numerical analysis in Python.
+**Automation & Controls Engineer @ Yanfeng Automotive Interiors**
+
+I build and program control systems for automotive interior manufacturing. My work spans PLC programming and industrial automation on the floor, signal processing and data analysis in Python, and firmware for embedded hardware. EE degree from UT Dallas.
 
 ---
 
-## Skills
+## Technical Skills
 
-| Area | Tools / Languages |
+| Domain | Tools & Languages |
 |---|---|
-| Embedded Systems | Arduino, C/C++, SPI, I²C, 74HC595, 7-segment displays, LCD |
-| Systems Programming | C++ — structs, arrays, functions, OOP fundamentals |
-| Scientific Computing | Python, NumPy, Jupyter Notebooks |
-| Hardware | Circuits, Digital Logic, VLSI, Signals & Systems, Semiconductor Devices |
-| Design Tools | KiCad, Multisim, Quartus |
+| Automation & Controls | PLC programming, industrial process control, machine vision (OpenCV) |
+| Signal Processing & DSP | FFT, FIR/IIR filter design, Laplace/Fourier analysis, pole-zero methods |
+| Scientific Computing | Python, NumPy, SciPy, SymPy, Pandas, Matplotlib, Jupyter |
+| Embedded Systems | C/C++, Arduino, SPI, I²C, 74HC595, 7-segment displays, LCD |
+| Hardware & EE Theory | Digital Logic, VLSI, Circuits, Signals & Systems, Semiconductor Devices |
+| Design Tools | Multisim, Quartus, KiCad |
 
 ---
 
-## Code Samples
+## Engineering Notebooks
 
-### Embedded — [74HC595 Hex Display Counter](https://gist.github.com/petem903/77b51a8d4f5c0913dc7f30c472ef9d7e) (Arduino)
-A 7-segment display driven through a 74HC595 shift register via `shiftOut`. Reads hex characters (0–F) over Serial and maps them to segment bit patterns using a lookup table.
+**[`petem903/engineering-notebooks`](https://github.com/petem903/engineering-notebooks)** — Full repository of Python/Jupyter work organized by discipline.
 
-```cpp
-const byte SEVEN_SEG[16] = {
-  0b11111100,  // 0
-  0b01100000,  // 1
-  0b11011010,  // 2
-  // ... 3–F
-};
+### Thermal Systems Analysis
+**[Heating Pad Thermal Analysis](https://github.com/petem903/engineering-notebooks/blob/main/thermal-analysis/heating_pad_thermal_analysis.ipynb)**
+Real sensor data pipeline: 4-probe system at 1 Hz, multi-format ingestion (CSV + ODS), automatic steady-state detection via finite-difference dT/dt, multi-file aggregation, and 300 DPI publication figures.
+`pandas` · `numpy` · `matplotlib` · `scipy`
 
-void sevenSegWrite(byte digit) {
-  digitalWrite(LATCH_PIN, LOW);
-  shiftOut(DATA_PIN, CLOCK_PIN, LSBFIRST, SEVEN_SEG[digit]);
-  digitalWrite(LATCH_PIN, HIGH);
-}
-```
+### Signals & Systems
+**[Laplace & Fourier Frequency Analysis](https://github.com/petem903/engineering-notebooks/blob/main/signals-systems/laplace_fourier_frequency_analysis.ipynb)**
+Symbolic Laplace and inverse Laplace transforms for piecewise/exponential signals including repeated poles. Full Fourier series derivation (a₀, aₙ, bₙ) via symbolic integration, signal reconstruction from harmonics, and magnitude/phase frequency response plots.
+`sympy` · `numpy` · `matplotlib`
 
----
+**[FFT & Spectral Analysis](https://github.com/petem903/engineering-notebooks/blob/main/signals-systems/fft_spectral_analysis.ipynb)**
+Spectral analysis of multi-tone signals. Zero-padding effects on frequency resolution, zero-stuffing, spectral modulation via sign-flipping, aliasing from undersampled signals. Nyquist criterion analysis.
+`numpy` · `matplotlib`
 
-### C++ — [Grade Drop Calculator](https://gist.github.com/petem903/bd7e1259151010bb1c4cf502729f5489)
-Reads 5 grades, drops the lowest, and reports before/after averages. Demonstrates array passing, function decomposition, and formatted output.
+**[Digital Filter Design — Convolution & Pole-Zero](https://github.com/petem903/engineering-notebooks/blob/main/signals-systems/filter_design_convolution.ipynb)**
+FIR filter design from pole-zero specs: `zpk2tf` conversion, impulse response, pole-zero diagrams on the complex plane, DTFT frequency response in dB and radians, passband/stopband validation.
+`scipy.signal` · `numpy` · `matplotlib`
 
-```cpp
-int findLowest(const double grades[]) {
-  int idx = 0;
-  for (int i = 1; i < SIZE; i++)
-    if (grades[i] < grades[idx]) idx = i;
-  return idx;
-}
+### Numerical Methods
+**[DFT from Scratch · Gaussian Elimination · Newton-Raphson](https://github.com/petem903/engineering-notebooks/blob/main/numerical-methods/dft_gaussian_elimination_newton_raphson.ipynb)**
+Three hand-built implementations: O(N²) DFT/IDFT with round-trip verification, manual Gaussian elimination with back-substitution (no `numpy.linalg`), and Newton-Raphson root finding for transcendental/polynomial equations. Includes `timeit` benchmarking of manual vs. `numpy.dot` matrix multiply across sizes 4×4–20×20.
+`numpy` · `matplotlib` · `timeit`
 
-double calcDropAverage(const double grades[], int dropIdx) {
-  double total = 0;
-  for (int i = 0; i < SIZE; i++) total += grades[i];
-  return (total - grades[dropIdx]) / (SIZE - 1);
-}
-```
-
----
-
-### C++ — [Dice Gambling Game](https://gist.github.com/petem903/00b9f3de1b9c3d2154bc350c20d64894)
-Console game with betting logic, random dice rolls, and input validation. Tracks funds across rounds and ends when the player quits or goes broke.
-
-```cpp
-double placeBet() {
-  double amt;
-  cout << "How much would you like to bet? $";
-  cin >> amt;
-  while (amt <= 0 || amt > funds) {
-    cout << "Invalid. Enter a bet between $1 and $" << funds << ": $";
-    cin >> amt;
-  }
-  return amt;
-}
-```
-
----
-
-### C++ — [Weekly Payroll Calculator](https://gist.github.com/petem903/5c9c573aba1984a8fc01ec73acc28901)
-Computes weekly pay for N employees with validated hours (1–40) and prints the company average. Clean separation between validation, calculation, and output.
-
-```cpp
-bool isValidHours(int hours) { return hours >= 1 && hours <= 40; }
-float calcPay(int hours, float rate) { return hours * rate; }
-float calcAveragePay(float total, int n) { return total / n; }
-```
+**[Taylor Series & Signal Reconstruction](https://github.com/petem903/engineering-notebooks/blob/main/numerical-methods/taylor_series_signal_reconstruction.ipynb)**
+eˣ, e⁻ˣ, sin(x), cos(x) built from first principles with convergence to `error < 10⁻⁶`. Validated against `math` library over 20 random test values. Implements signal downsampling (x[2n], x[4n]) with linear interpolation recovery.
+`numpy` · `math`
 
 ---
 
 ## Projects
 
-- **[VisionSystemAI for Industrial Process Flow](https://github.com/petem903/VisionSystemAIforIndustrialProcessFlow)** — OpenCV-based vision system to track restocks in industrial environments
-- **[Line Following Robot](https://github.com/petem903/Line-Following-Robot)** — Autonomous robot with PID navigation; senior design capstone
-- **[Portfolio](https://github.com/petem903/Portfolio)** — Industrial automation work from Yanfeng co-op
+**[VisionSystemAI — Industrial Process Flow](https://github.com/petem903/VisionSystemAIforIndustrialProcessFlow)**
+OpenCV-based machine vision system for automated restock tracking in an industrial production environment.
+
+**[Autonomous Line Following Robot](https://github.com/petem903/Line-Following-Robot)**
+PID-controlled robot navigating a line course autonomously. Senior design capstone — full hardware/firmware build.
+
+**[Industrial Automation Portfolio](https://github.com/petem903/Portfolio)**
+Controls and automation work from co-op and employment at Yanfeng Automotive Interiors.
 
 ---
 
-*Electrical Engineering @ UT Dallas · Co-op @ Yanfeng · Embedded systems + software*
+## Code Snippets
+
+| Snippet | Language | Topic |
+|---|---|---|
+| [74HC595 Hex Display Counter](https://gist.github.com/petem903/77b51a8d4f5c0913dc7f30c472ef9d7e) | Arduino | Shift register, 7-seg display, SPI |
+| [Dice Gambling Game](https://gist.github.com/petem903/00b9f3de1b9c3d2154bc350c20d64894) | C++ | Input validation, game loop |
+| [Grade Drop Calculator](https://gist.github.com/petem903/bd7e1259151010bb1c4cf502729f5489) | C++ | Arrays, function decomposition |
+| [Weekly Payroll Calculator](https://gist.github.com/petem903/5c9c573aba1984a8fc01ec73acc28901) | C++ | Modular functions, validation |
+
+---
+
+*Yanfeng Automotive Interiors · UT Dallas EE · Automation · Controls · DSP · Embedded*
