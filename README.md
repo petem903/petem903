@@ -2,7 +2,7 @@
 
 **Automation & Controls Engineer @ Yanfeng Automotive Interiors**
 
-I build and program control systems for automotive interior manufacturing. My work spans PLC programming and industrial automation on the floor, signal processing and data analysis in Python, and firmware for embedded hardware. EE degree from UT Dallas.
+I build and program control systems for automotive interior manufacturing. My work spans PLC programming and industrial automation on the floor, signal processing and data analysis in Python, and firmware for embedded hardware. EE degree from Texas State University.
 
 ---
 
@@ -76,4 +76,4 @@ Controls and automation work from co-op and employment at Yanfeng Automotive Int
 
 ---
 
-*Yanfeng Automotive Interiors · UT Dallas EE · Automation · Controls · DSP · Embedded*
+*Automation & Controls Engineer @ Yanfeng Automotive Interiors · EE @ TXST · DSP · Embedded Systems*
